@@ -96,3 +96,44 @@ var var_exist = function(variable) {
     if (variable === undefined || typeof variable === 'undefined' || variable === null)
       return true;
 };
+
+var dateDiff = function(date1, date2) {
+    var year = date2.substr(0, 4) - date1.substr(0, 4);
+    var month = date2.substr(5, 2) - date1.substr(5, 2);
+    if (month < 0)
+        year--;
+    else if (month == 0) {
+        var day = date2.substr(8, 2) - date1.substr(8, 2);
+        if (day < 0)
+            year--;
+        else if (day == 0)
+            console.log("C'est votre anniversaire !");
+    }
+    return year;
+};
+
+var distance_with2point = function(position_a_longitude, position_a_latitude, position_b_longitude, position_b_latitude) {
+    return (roundDecimal(distance(degree_to_radians(position_a_longitude), degree_to_radians(position_b_longitude), degree_to_radians(position_a_latitude), degree_to_radians(position_b_latitude))));
+};
+
+var degree_to_radians = function(degrees) {
+    return degrees * Math.PI / 180;
+};
+
+var distance = function(longa, longb, lata, latb) {
+    return 6371000 * Math.acos(Math.cos(lata) * Math.cos(latb) * Math.cos(longa - longb) + Math.sin(lata) * Math.sin(latb));
+};
+
+var roundDecimal = function(nombre, precision) {
+    precision = precision || 2;
+    var tmp = Math.pow(10, precision);
+    return Math.round(nombre * tmp) / tmp;
+};
+
+var no_injection = function(message) {
+    // Return a the same string with escaped "<script>" tags to avoid code injection
+    message = message.replace(/&/g, '&amp;');
+    message = message.replace(/</g, '&lt;');
+    message = message.replace(/>/g, '&gt;');
+    return (message);
+};

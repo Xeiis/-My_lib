@@ -22,3 +22,14 @@ reg_email(email)
 ___
 var_exist(var)
 ___
+dateDiff(date1, date2)
+___
+distance_with2point(longa, lata, longb, latb)
+___
+degree_to_radians(degree)
+___
+distance(longa, longb, lata, latb)
+___
+roundDecimal(nombre, precision)
+___
+no_injection(string)
